@@ -77,5 +77,6 @@ class CutSamePicture():
         cv2.destroyAllWindows()
 
 
-I = CutSamePicture()
-I.cut()
+if __name__ == '__main__':
+    I = CutSamePicture()
+    I.cut()
