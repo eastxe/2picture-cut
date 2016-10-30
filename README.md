@@ -1,1 +1,1 @@
-# 2picture-cut
+# cut-samepicture
