@@ -14,13 +14,13 @@ class CutSamePicture():
         pass
 
     def cut(self):
-        self.entire_img_path = './altera.png'
-        self.img_path = './altera_target.png'
-        self.input_pictures()
-        self.extraction_array()
-        self.search()
+        self.entire_img_path = './hukei.png'
+        self.img_path = './hukei_t.png'
+        self._input_pictures()
+        self._extraction_array()
+        self._search()
 
-    def input_pictures(self):
+    def _input_pictures(self):
         '''
         search_img is what you want to search same image
         entire_image is an entire image what is in  search_img image
@@ -28,10 +28,10 @@ class CutSamePicture():
         self.entire_img = cv2.imread(self.entire_img_path)
         self.search_img = cv2.imread(self.img_path)
 
-    def path_conversion(self):
+    def _path_conversion(self):
         pass
 
-    def check(self):
+    def _check(self):
         for pos in itertools.product(range(10), range(10)):
             if (self.search_Mat[pos[0]][pos[1]] ==
                     np.array([255, 255, 255])).all():
@@ -40,7 +40,7 @@ class CutSamePicture():
                 return True
         return False
 
-    def extraction_array(self):
+    def _extraction_array(self):
         left, top = 0, 0
         down, right = self.search_img.shape[:2]
         if right - left < 10 or down - top < 10:
@@ -50,7 +50,7 @@ class CutSamePicture():
             x = random.randint(int(right * 1 / 3), int(right * 2 / 3))
             y = random.randint(int(down * 1 / 3), int(down * 2 / 3))
             self.search_Mat = self.search_img[y:y + 10, x:x + 10]
-            if self.check():
+            if self._check():
                 self.pos_x = x
                 self.pos_y = y
                 break
@@ -58,7 +58,7 @@ class CutSamePicture():
             print 'sorry, I did not find a good image for this search'
             raise
 
-    def search(self):
+    def _search(self):
         down, right = self.entire_img.shape[:2]
         for pos in itertools.product(range(down - 10), range(right - 10)):
             print pos
